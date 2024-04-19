@@ -1,5 +1,9 @@
 # pylint: disable=missing-module-docstring
 # pylint: disable=invalid-name
+# pylint: disable=too-many-locals
+# pylint: disable=too-many-branches
+# pylint: disable=too-many-statements
+# pylint: disable=logging-fstring-interpolation
 import argparse
 import logging
 from os.path import dirname, abspath, exists, join
@@ -41,7 +45,7 @@ def main():
 
     logger.info(f"attempting to read data from {filename}")
     logger.info(f"looking for price charting information in column {price_charting_url}")
-    
+
     if not exists(filename):
         logger.error(f"failed to find {filename}")
         sys.exit(1)
@@ -65,7 +69,7 @@ def main():
         try:
             with urlopen(url_name) as open_url:
                 soup = BeautifulSoup(open_url.read(), features="lxml")
-        except (AttributeError, TypeError, ValueError, HTTPError) as error:
+        except (AttributeError, TypeError, ValueError, HTTPError):
             continue
 
         div = soup.find("div", {"id": "full-prices"})
