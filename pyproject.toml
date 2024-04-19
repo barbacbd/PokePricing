@@ -1,0 +1,61 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "poke_pricing"
+authors = [
+	{name = "Brent Barbachem", email = "barbacbd@gmail.com"},
+]
+description = "PokePricing is a Web crawler to grab latest price charting values."
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.8"
+keywords = [
+    "python",
+    "pokemon",
+    "web",
+    "crawler",
+    "python3",
+]
+classifiers = [
+    "Intended Audience :: Science/Research",
+    "License :: Freeware",
+    "Natural Language :: English",
+    "Operating System :: MacOS :: MacOS X",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: Microsoft :: Windows",
+    "Programming Language :: Python :: 3",
+    "Topic :: Software Development"
+]
+dependencies = [
+    "xlsxwriter",
+    "beautifulsoup4",
+    "pandas",
+    "openpyxl",
+]
+dynamic = ["version"]
+
+[tool.setuptools]
+include-package-data = true
+
+[project.optional-dependencies]
+tests = [
+    "pytest",
+    "pylint",
+]
+lint = [
+    "pylint",  # this exists in multiple spaces, and that's ok
+]
+clean = [
+    "pyclean",
+]
+[project.scripts]
+PokeFinance = "poke_pricing.poke_pricing:main"
+
+[tool.setuptools.package-data]
+'src' = [
+    'poke_pricing/support/CardList.xlsx',
+]
+
+
