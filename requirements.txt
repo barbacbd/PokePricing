@@ -1,3 +1,4 @@
 xlsxwriter
 beautifulsoup4
 pandas
+openpyxl
